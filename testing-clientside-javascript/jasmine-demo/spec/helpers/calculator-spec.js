@@ -1,5 +1,3 @@
-var Calculator = require('../../scripts/helpers/calculator');
-
 describe('Given a calculator instance',function(){
     var calc;
 
