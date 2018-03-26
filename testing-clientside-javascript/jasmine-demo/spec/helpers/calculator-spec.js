@@ -20,4 +20,10 @@ describe('Given a calculator instance',function(){
         var result = calc.divideNumbers(6,3);
         expect(result).toBe(2);
     });
+
+    it('Should return 0.333 when invokes divideNumber method with 3 and 1',function(){
+        var result = calc.divideNumbers(1,3);
+        expect(result).toBeGreaterThanOrEqual(0.33);
+        expect(result).toBeLessThanOrEqual(0.34);
+    });
 });
