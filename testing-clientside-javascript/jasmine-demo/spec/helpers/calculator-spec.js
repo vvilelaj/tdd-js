@@ -25,3 +25,46 @@ describe('Given a calculator instance',function(){
         expect(result).toBeLessThanOrEqual(0.34);
     });
 });
+
+describe('spies',function(){
+    it('create an spy and setup return value', function(){
+        var cal = new Calculator();
+        var spy = spyOn(cal,'addNumbers').and.returnValue(5)
+
+        var result = cal.addNumbers(1,2);
+
+        expect(result).toBe(5);
+    });
+
+    it('create an spy and rewrite function', function(){
+        var cal = new Calculator();
+        var spy = spyOn(cal,'addNumbers').and.callFake(function(){
+            return 10;
+        });
+
+        var result = cal.addNumbers(1,2);
+
+        expect(result).toBe(10);
+    });
+
+    it('create an spy and execute the original implementation', function(){
+        var cal = new Calculator();
+        var spy = spyOn(cal,'addNumbers').and.callThrough();
+
+        var result = cal.addNumbers(1,2);
+
+        expect(result).toBe(3);
+        expect(spy).toHaveBeenCalledTimes(1);
+    });
+});
+
+describe('spies & mocking',function(){
+    it('Creating a mock object and setup return values',function(){
+        var spy = jasmine.createSpyObj('calculator',['addNumbers','divideNumbers']);
+        spy.addNumbers.and.returnValue(2);
+        spy.divideNumbers.and.returnValue(4);
+
+        expect(spy.addNumbers()).toBe(2);
+        expect(spy.divideNumbers()).toBe(4);
+    });
+});
